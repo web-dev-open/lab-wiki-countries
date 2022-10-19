@@ -155,7 +155,7 @@ reportWebVitals();
 
   
 
-### Bootstrap installation
+### Material UI installation
 
   
 

@@ -187,7 +187,7 @@ In this iteration, we will focus on the general layout. Before you start, inside
 
   
 
--  `CountriesList`: Displays the list of links with the country names. Each link should be a `react-router-dom`  `Route` which we will use to <u>send</u> the country code (`alpha3Code`) via the URL.
+-  `CountriesList`: Displays the list of links with the country names. Each link should be a `react-router-dom`  `Link` which we will use to <u>send</u> the country code (`alpha3Code`) via the URL.
 
   
 

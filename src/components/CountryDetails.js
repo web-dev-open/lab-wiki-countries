@@ -21,7 +21,9 @@ function CountryDetails() {
                         name: res.data.name.common,
                         capitol: res.data.capital,
                         area: res.data.area,
-                        borders: res.data.borders
+                        borders: res.data.borders,
+                        img: res.data.alpha2Code
+                
 
                     }
                     setDetail(data)
@@ -31,15 +33,21 @@ function CountryDetails() {
         makeApi()
     }, [id])
     
+    if (!detail) {
+        return <p>loading</p>
+    }
     console.log(detail)
-    
+    let newImg = (detail.img).toLowerCase()
+console.log("this is new img", newImg)
       return (
         <div>
-        hey
+        <img src= {`https://flagpedia.net/data/flags/icon/72x54/${newImg}.png`} alt="passed" /> 
+       
         <h1>Country Info</h1>
         <h2>{detail.name}</h2>
-        <h2>{detail.capitol}</h2>
-        <h2>{detail.area}</h2>
+        <h2>Capital: {detail.capitol}</h2>
+        <h2>Area: {detail.area}</h2>
+        <img src=''></img>
         
         {
         detail.borders.map((countries) => {

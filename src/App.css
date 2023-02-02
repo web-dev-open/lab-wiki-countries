@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+body {
+  padding-top: 60px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -40,4 +43,12 @@
   width: 100%;
   line-height: 10px;
   margin-bottom: 10;
+  overflow: hidden;
+}
+.content {
+  padding: 8px;
+}
+
+.countryCard {
+  cursor: pointer;
 }

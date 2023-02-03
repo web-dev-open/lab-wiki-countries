@@ -17,12 +17,14 @@ function CountryDetail() {
         capital,
         alpha2Code,
         area,
+        borders,
       } = response.data;
       let details = {
         common,
         capital,
         alpha2Code,
         area,
+        borders,
       };
       setCountryDetail(details);
     }
@@ -38,9 +40,17 @@ function CountryDetail() {
               alt="flag"
               src={`https://flagpedia.net/data/flags/icon/72x54/${countryDetail.alpha2Code.toLowerCase()}.png`}
             />
-            <p>{countryDetail.common}</p>
-            <p>Capital:{countryDetail.capital}</p>
+            <h1>{countryDetail.common}</h1>
+            <p>Capital: {countryDetail.capital}</p>
             <p>Area: {countryDetail.area} km 2</p>
+            <p>Borders:</p>
+            {countryDetail.borders.map((border, i) => {
+              return (
+                <div key={i}>
+                  <li>{border}</li>
+                </div>
+              );
+            })}
           </Grid>
         </Grid>
       </div>

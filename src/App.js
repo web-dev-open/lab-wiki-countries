@@ -6,12 +6,20 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./App.css";
+import CountryDetail from "./components/CountryDetail";
 import Navbar from "./components/Navbar";
-import ShowCountryDetail from "./components/ShowCountryDetail";
 
 function App() {
   const [countries, setCountries] = useState(null);
   const [showCountryDetail, setShowCountryDetail] = useState(false);
+
+  function RightSide() {
+    return (
+      <Grid item xs={6}>
+        <CountryDetail />
+      </Grid>
+    );
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -23,7 +31,7 @@ function App() {
     fetchData();
   }, []);
   if (countries) {
-    return showCountryDetail ? (
+    return (
       <div>
         <Navbar />
         <Grid container spacing={2}>
@@ -35,7 +43,7 @@ function App() {
                     className="countryCard"
                     sx={{ maxWidth: 345 }}
                     onClick={() => {
-                      setShowCountryDetail(false);
+                      setShowCountryDetail(!showCountryDetail);
                     }}
                   >
                     <CardMedia
@@ -55,43 +63,7 @@ function App() {
               );
             })}
           </Grid>
-          <Grid item xs={6}>
-            <ShowCountryDetail />
-          </Grid>
-        </Grid>
-      </div>
-    ) : (
-      <div>
-        <Navbar />
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            {countries.map((country, i) => {
-              return (
-                <div key={`${country.name.common}${i}`} className="content">
-                  <Card
-                    className="countryCard"
-                    sx={{ maxWidth: 345 }}
-                    onClick={() => {
-                      setShowCountryDetail(true);
-                    }}
-                  >
-                    <CardMedia
-                      component="img"
-                      height="20"
-                      sx={{ width: 20 }}
-                      image={`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`}
-                      alt="flag"
-                    />
-                    <CardContent>
-                      <Typography variant="h5" component="div">
-                        {country.name.common}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </div>
-              );
-            })}
-          </Grid>
+          {showCountryDetail && <RightSide />}
         </Grid>
       </div>
     );

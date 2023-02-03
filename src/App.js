@@ -40,7 +40,10 @@ function App() {
           <Grid item xs={6}>
             {countries.map((country, code) => {
               return (
-                <div key={`${country.name.common}${code}`} className="content">
+                <div
+                  key={`${country.name.official}${code}`}
+                  className="content"
+                >
                   <Card className="countryCard" sx={{ maxWidth: 345 }}>
                     <CardMedia
                       component="img"
@@ -51,7 +54,7 @@ function App() {
                     />
                     <CardContent>
                       <Link to={`/country/${country.alpha3Code}`}>
-                        {country.name.common}
+                        {country.name.official}
                       </Link>
                     </CardContent>
                   </Card>

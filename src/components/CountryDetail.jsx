@@ -6,7 +6,7 @@ var countries = require("i18n-iso-countries");
 countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 
 function CountryDetail() {
-  const { code, code2 } = useParams();
+  const { code } = useParams();
   const [countryDetail, setCountryDetail] = useState(null);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function CountryDetail() {
         `https://ih-countries-api.herokuapp.com/countries/${code}`
       );
       const {
-        name: { common },
+        name: { official },
         capital,
         alpha2Code,
         alpha3Code,
@@ -23,7 +23,7 @@ function CountryDetail() {
         borders,
       } = response.data;
       let details = {
-        common,
+        official,
         capital,
         alpha2Code,
         alpha3Code,
@@ -46,7 +46,7 @@ function CountryDetail() {
               alt="flag"
               src={`https://flagpedia.net/data/flags/icon/72x54/${countryDetail.alpha2Code.toLowerCase()}.png`}
             />
-            <h1>{countryDetail.common}</h1>
+            <h1>{countryDetail.official}</h1>
             {console.log(countries.getName(countryDetail.alpha2Code, "en"))}
 
             <p>Capital: {countryDetail.capital}</p>
@@ -57,7 +57,7 @@ function CountryDetail() {
               return (
                 <div key={code2}>
                   <Link to={`/country/${border}`}>
-                    {countries.getName(border, "en")}
+                    {countries.getName(border, "en", { select: "official" })}
 
                     {/* {border} */}
                     {console.log(countryDetail.alpha3Code)}

@@ -6,7 +6,7 @@ var countries = require("i18n-iso-countries");
 countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 
 function CountryDetail() {
-  const { code } = useParams();
+  const { code, code2 } = useParams();
   const [countryDetail, setCountryDetail] = useState(null);
 
   useEffect(() => {
@@ -53,11 +53,13 @@ function CountryDetail() {
             <p>Area: {countryDetail.area} km 2</p>
 
             <p>Borders:</p>
-            {countryDetail.borders.map((border, code) => {
+            {countryDetail.borders.map((border, code2) => {
               return (
-                <div key={code}>
-                  <Link to={`/country/${countryDetail.alpha3Code}`}>
+                <div key={code2}>
+                  <Link to={`/country/${border}`}>
                     {countries.getName(border, "en")}
+
+                    {/* {border} */}
                     {console.log(countryDetail.alpha3Code)}
                   </Link>
                 </div>
@@ -66,7 +68,7 @@ function CountryDetail() {
           </Grid>
         </Grid>
         <Routes>
-          <Route path="/country/:code" element={<CountryDetail />} />
+          <Route path="/country/:code2" element={<CountryDetail />} />
         </Routes>
       </div>
     );
